@@ -22,6 +22,7 @@ class GalleriesController extends Controller
 
     $results = Gallerie::with('user', 'images');
     $galleries = $results->get();
+    
     return response()->json($galleries);
     }
 
