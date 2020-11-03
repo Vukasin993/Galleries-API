@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Gallerie;
+use App\Models\Gallery;
 use App\Models\Image;
 use App\Models\User;
 
@@ -16,11 +16,11 @@ class GalleriesController extends Controller
      */
     public function index()
     {
-        // $galleries = Gallerie::all();
+        // $galleries = Gallery::all();
 
         // return response()->json($galleries); 
 
-    $results = Gallerie::with('user', 'images');
+    $results = Gallery::with('user', 'images');
     $galleries = $results->get();
     
     return response()->json($galleries);
@@ -55,7 +55,23 @@ class GalleriesController extends Controller
      */
     public function show($id)
     {
-        //
+
+        // $results = Gallery::with('user', 'images');
+        // $galleries = $results->get();
+
+        $gallery = Gallery::findOrFail($id);
+        $images = $gallery->images;
+        $user = $gallery->user;
+        $results= [
+            'id' => $gallery->id,
+            'name'=>$gallery->name,
+            'images'=>$images,
+            'user'=>$user
+        ];
+
+        return response()->json($results);
+
+
     }
 
     /**

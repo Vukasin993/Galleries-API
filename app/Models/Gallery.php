@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Image;
 
-class Gallerie extends Model
+class Gallery extends Model
 {
     use HasFactory;
 

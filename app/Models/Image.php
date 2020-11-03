@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Gallerie;
+use App\Models\Gallery;
 
 class Image extends Model
 {
     use HasFactory;
 
-    public function gallerie() {
-        return $this->belongsTo(Gallerie::class);
+    public function gallery() {
+        return $this->belongsTo(Gallery::class);
     }
 }
