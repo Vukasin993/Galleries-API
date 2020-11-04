@@ -49,12 +49,15 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::with('galleries')->findOrFail($id);
+        // $user = User::findOrFail($id);
         // $galleries = $user->galleries;
+        // // $images = $galleries->images;
         // $results= [
         //     'id' => $user->id,
         //     'first_name'=>$user->first_name,
         //     'last_name'=>$user->last_name,
-        //     'gallery' => $galleries
+        //     'galleries' => $galleries,
+        //     // 'images' =>$images
         // ];
 
         return response()->json($user);
