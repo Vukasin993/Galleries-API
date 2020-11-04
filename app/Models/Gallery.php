@@ -19,6 +19,17 @@ class Gallery extends Model
         return $this->hasMany(Image::class);
     }
 
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function addImages($source, $id) {
+        return $this->images()->create([
+            'source' => $source,
+            'gallery_id' => $id
+        ]);
+    }
+
     protected $fillable = [
         'name',
         'description',

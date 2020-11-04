@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Models\Gallery;
 use App\Models\Image;
+use App\Models\Comment;
 
 
 class User extends Authenticatable implements JWTSubject
@@ -23,6 +24,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function images() {
         return $this->hasMany(Image::class);
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
     }
 
     /**
