@@ -18,4 +18,10 @@ class Gallery extends Model
     public function images() {
         return $this->hasMany(Image::class);
     }
+
+    protected $fillable = [
+        'name',
+        'description',
+        'user_id'
+    ];
 }

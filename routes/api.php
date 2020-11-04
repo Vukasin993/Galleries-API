@@ -22,8 +22,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/galleries', [GalleriesController::class, 'index']);
 Route::get('/galleries/{id}', [GalleriesController::class, 'show']);
+Route::post('/galleries', [GalleriesController::class, 'store']);
 
 Route::get('/authors/{id}', [UserController::class, 'show']);
+
 
 
 Route::post('/login', [AuthController::class, 'login']);
