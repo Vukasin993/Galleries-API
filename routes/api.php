@@ -24,12 +24,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/galleries', [GalleriesController::class, 'index']);
 Route::get('/galleries/{id}', [GalleriesController::class, 'show']);
-Route::post('/galleries/{id}/comments', [CommentsController::class, 'store']);
 Route::post('/galleries', [GalleriesController::class, 'store']);
 Route::delete('/galleries/{id}', [GalleriesController::class, 'destroy']);
 
 Route::get('/authors/{id}', [UserController::class, 'show']);
 
+Route::post('/galleries/{id}/comments', [CommentsController::class, 'store']);
+Route::get('/comments', [CommentsController::class, 'index']);
+Route::get('/comments/{id}', [CommentsController::class, 'show']);
+Route::delete('/comments/{id}', [CommentsController::class, 'destroy']);
 
 
 Route::post('/login', [AuthController::class, 'login']);

@@ -53,7 +53,9 @@ class CommentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+    
+        return $comment;
     }
 
     /**
@@ -87,6 +89,9 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+      
+        return $comment;
     }
 }
