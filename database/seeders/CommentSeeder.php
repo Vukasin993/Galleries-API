@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-// use Illuminate\Database\Seeder\CommentSeeder;
 use App\Models\Comment;
 
 class CommentSeeder extends Seeder

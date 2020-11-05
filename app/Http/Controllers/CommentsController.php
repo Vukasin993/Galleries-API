@@ -31,9 +31,6 @@ class CommentsController extends Controller
     public function store(CommentRequest $request, $id)
     {
         $data = $request->validated();
-        // $user_id = auth()->user()->id;
-        // $user = User::findOrFail($request['id']);
-        // $user_id = $user->id;
         $user = auth('api')->user();
         $comment= Comment::create([
             "text"=>$data['text'],
