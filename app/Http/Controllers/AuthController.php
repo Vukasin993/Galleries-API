@@ -21,10 +21,16 @@ class AuthController extends Controller
         if (!$token = auth()->attempt($request->only('email', 'password'))) {
             return response(null, 401);
         }
+        
 
         return response()->json(compact('token'));
         
   
+    }
+
+    public function loggedUser() {
+        $user = auth('api')->user();
+        return $loggedUser = User::with('galleries', 'galleries.images', 'galleries.comments')->findOrFail($user->id);
     }
 
     public function refreshToken() {
@@ -34,7 +40,6 @@ class AuthController extends Controller
     }
 
     public function logout() {
-        echo 'izlogovan';
         auth('api')->logout(true);
     }
 
@@ -62,4 +67,6 @@ class AuthController extends Controller
             return response()->json(compact('user','token'), 201);
 
     }
+
+   
 }

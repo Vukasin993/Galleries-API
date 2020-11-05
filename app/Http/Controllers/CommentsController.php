@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\Gallery;
@@ -17,7 +18,8 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        return Comment::all();
+        $comments = Comment::all();
+        return response()->json($comments);
     }
 
     /**
@@ -25,20 +27,22 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(CommentRequest $request, $id)
     {
-        //
+        $data = $request->validated();
+        // $user_id = auth()->user()->id;
+        // $user = User::findOrFail($request['id']);
+        // $user_id = $user->id;
+        $user = auth('api')->user();
+        $comment= Comment::create([
+            "text"=>$data['text'],
+            'gallery_id' =>$id,
+            'user_id' => $user->id
+        ]);
+    
+        
+        return response()->json($comment);
     }
 
     /**
