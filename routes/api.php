@@ -26,6 +26,7 @@ Route::get('/galleries', [GalleriesController::class, 'index']);
 Route::get('/galleries/{id}', [GalleriesController::class, 'show']);
 Route::post('/galleries/{id}/comments', [CommentsController::class, 'store']);
 Route::post('/galleries', [GalleriesController::class, 'store']);
+Route::delete('/galleries/{id}', [GalleriesController::class, 'destroy']);
 
 Route::get('/authors/{id}', [UserController::class, 'show']);
 
