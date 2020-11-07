@@ -40,12 +40,11 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function userGall() {
+        $user = auth('api')->user();
+        return $loggedUser = User::with('galleries', 'galleries.images', 'galleries.comments')->findOrFail($user->id);
+
+    }
     public function show($id)
     {
         $user = User::with('galleries', 'galleries.images', 'galleries.comments')->findOrFail($id);
