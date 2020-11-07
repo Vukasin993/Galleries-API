@@ -22,19 +22,21 @@ use App\Http\Controllers\CommentsController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware'=> 'auth:api'], function () {
+    Route::get('/galleries/{id}', [GalleriesController::class, 'show']);
+    Route::post('/galleries', [GalleriesController::class, 'store']);
+    Route::delete('/galleries/{id}', [GalleriesController::class, 'destroy']);
+    Route::get('/my-galleries', [UserController::class, 'userGall']);
+    Route::post('/galleries/{id}/comments', [CommentsController::class, 'store']);
+    Route::delete('/comments/{id}', [CommentsController::class, 'destroy']);
+    Route::get('/authors/{id}', [UserController::class, 'show']);
+    Route::get('/comments', [CommentsController::class, 'index']);
+    Route::get('/comments/{id}', [CommentsController::class, 'show']);
+});
+
+
 Route::get('/galleries', [GalleriesController::class, 'index']);
-Route::get('/galleries/{id}', [GalleriesController::class, 'show']);
-Route::post('/galleries', [GalleriesController::class, 'store']);
-Route::delete('/galleries/{id}', [GalleriesController::class, 'destroy']);
-
-Route::get('/my-galleries', [UserController::class, 'userGall']);
-Route::get('/authors/{id}', [UserController::class, 'show']);
-
-Route::post('/galleries/{id}/comments', [CommentsController::class, 'store']);
-Route::get('/comments', [CommentsController::class, 'index']);
-Route::get('/comments/{id}', [CommentsController::class, 'show']);
-Route::delete('/comments/{id}', [CommentsController::class, 'destroy']);
-
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/user', [AuthController::class, 'loggedUser']);
